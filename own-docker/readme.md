@@ -6,7 +6,7 @@
 5. Chcemy Dockera (przy okazji warto zerknąć na resztę rzeczy), więc uruchamiamy skrypt `chche_dockera.sh`.
 6. W międzyczasie, w panelu Mikrusa musimy sprawdzić jakie mamy otwarte porty i jakim adresem możemy się dodać do naszej aplikacji:
 ![img_3.png](img_3.png)
-7W międzyczasie, instalujemy Dockera na naszej maszynie lokalnej i tworzymy Dockerfile naszego rozwiązania. Pamiętaj o podmianie portów na ten z mikrusa:
+7. międzyczasie, instalujemy Dockera na naszej maszynie lokalnej i tworzymy Dockerfile naszego rozwiązania. Pamiętaj o podmianie portów na ten z mikrusa:
 ``` 
  FROM python:3.10-alpine
 WORKDIR /code
@@ -21,23 +21,23 @@ EXPOSE 20153
 ENTRYPOINT ["uvicorn"]
 CMD ["main:app", "--host", "0.0.0.0", "--port", "20153"]
 ```
-7. Budujemy obraz dockerowy: 
+8. Budujemy obraz dockerowy: 
 ``` 
 docker build . -t fastapi-103:0.0.1
 ```
 ![img_1.png](img_1.png)
-7. Sprawdzamy, czy wszystko działa lokalnie:
+9. Sprawdzamy, czy wszystko działa lokalnie:
 ``` 
 docker run -20153:20153 fastapi-103:0.0.1
 ```
 ![img_2.png](img_2.png) 
-8. Jak działa, to trzeba teraz jakoś przekazać obraz do dockera na mikrusie. Najlepsze rozwiązanie, to użycie jakiegoś rejestruk kontenerów (np. https://hub.docker.com/), ale to zadanie trudniejsze niż po prostu spakowanie naszego konenera i wysłanie do mikrusa:
+10. Jak działa, to trzeba teraz jakoś przekazać obraz do dockera na mikrusie. Najlepsze rozwiązanie, to użycie jakiegoś rejestruk kontenerów (np. https://hub.docker.com/), ale to zadanie trudniejsze niż po prostu spakowanie naszego konenera i wysłanie do mikrusa:
 ``` 
 docker save fastapi-103:0.0.1 -o fastapi.tar
 scp -P 10153 fastapi.tar root@srv16.mikr.us:~
 ```
-9. Na serwerze mikrusa ładujemy obraz dockerowy:
+11. Na serwerze mikrusa ładujemy obraz dockerowy:
 ![img_4.png](img_4.png)
-10. I go uruchamiamy (dla dociekliwych, najlepiej korzystając z tmuxa/screena):
+12. I go uruchamiamy (dla dociekliwych, najlepiej korzystając z tmuxa/screena):
 ![img_5.png](img_5.png)
 ![img_6.png](img_6.png)
