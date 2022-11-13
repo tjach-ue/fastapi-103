@@ -47,8 +47,7 @@ git push heroku heroku-master:master
 heroku ps:scale web=1
 ```
 
-4. Po zdeployowaniu na heroku niestety działać nie będzie. Podglądamy logi aplikacji:
-![img_3.png](img_3.png) 
-``` 
+4. Po zdeployowaniu na heroku działa: 
+![img_4.png](img_4.png)
 
-```
+Uwaga: gdybyśmy instalowali wersję zwykła opencv, wymagałoby to zabawy z buildpackami: https://stackoverflow.com/questions/49469764/how-to-use-opencv-with-heroku 
