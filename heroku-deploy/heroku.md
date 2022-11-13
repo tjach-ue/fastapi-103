@@ -41,3 +41,8 @@ async def say_hello(name: str):
     is_success, im_png = cv2.imencode(".png", combined)
     return StreamingResponse(io.BytesIO(im_png.tobytes()), media_type="image/png")
 ```
+3. Po zdeployowaniu na heroku niestety działać nie będzie. Podglądamy logi aplikacji:
+![img_3.png](img_3.png) 
+``` 
+
+```
